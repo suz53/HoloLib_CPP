@@ -1,0 +1,1 @@
+https://github.com/opencv/opencv/releases/download/3.4.7/opencv-3.4.7-vc14_vc15.exe

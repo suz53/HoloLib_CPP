@@ -30,3 +30,19 @@
 *.exe
 *.out
 *.app
+
+# Folder
+.vs
+Debug
+Release
+Executable File
+
+# Microsoft Visual Studio Project files
+# *.vcxproj
+# *.vcxproj.filters
+# *.vcxproj.user
+
+# Resource
+# *.tif
+# *.bmp
+# *.jpg
