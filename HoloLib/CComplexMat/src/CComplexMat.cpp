@@ -9,15 +9,19 @@ using namespace cv;
 gs::CComplexMat::CComplexMat( ) { }
 gs::CComplexMat::~CComplexMat() { }
 
-gs::CComplexMat::CComplexMat( int _rows, int _cols )
+gs::CComplexMat::CComplexMat(int _rows, int _cols)
 {
 
     m_Re = Mat_<double>( _rows, _cols, 0.0 );
     m_Im = Mat_<double>( _rows, _cols, 0.0 );
+    m_rows = _rows;
+    m_cols = _cols;
+    rows = m_rows;
+    cols = m_cols;
     mergeRI();
 }
 
-gs::CComplexMat::CComplexMat( Mat M, GS_type type )
+gs::CComplexMat::CComplexMat(Mat M, CPLX_type type)
 {
     if (M.channels() == 2 && type == GS_CLPX)
     {
@@ -48,11 +52,18 @@ gs::CComplexMat::CComplexMat( Mat M, GS_type type )
             mergeAP();
             break;
         default:
+            m_Re = Mat_<double>(M.clone());
+            m_Im = Mat_<double>(M.rows, M.cols, 0.0);
+            mergeRI();
             break;
         }
     }
     splitRI();
     splitAP();
+    m_rows = M.rows;
+    m_cols = M.cols;
+    rows = m_rows;
+    cols = m_cols; 
 }
 
 Mat gs::CComplexMat::getAmplitude()
@@ -117,7 +128,7 @@ int gs::CComplexMat::setPhase(Mat P)
     return 0;
 }
 
-int gs::CComplexMat::setComplexM(Mat M, GS_type type)
+int gs::CComplexMat::setComplexM(Mat M, CPLX_type type)
 {
     preProcess();
     if (M.channels() == 2 && type == GS_REAL)
@@ -149,11 +160,18 @@ int gs::CComplexMat::setComplexM(Mat M, GS_type type)
             mergeAP();
             break;
         default:
+            m_Re = Mat_<double>(M.clone());
+            m_Im = Mat_<double>(M.rows, M.cols, 0.0);
+            mergeRI();
             break;
         }
     }
     splitRI();
     splitAP();
+    m_rows = M.rows;
+    m_cols = M.cols;
+    rows = m_rows;
+    cols = m_cols;
     return 0;
 }
 
