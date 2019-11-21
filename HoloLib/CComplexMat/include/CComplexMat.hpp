@@ -4,6 +4,13 @@
 //  @brief 由于OpenCV的复数运算功能缺失，该 CComplexMat 复振幅类实现复振幅运算，C++实现傅里叶光学的基础。
 //         该类实现了双通道Mat对象，以实数、虚数、振幅、相位方式构建矩阵。
 //         复数矩阵的点乘操作。该类兼容_InputArray类型，可直接被DFT函数接受。
+//
+//  @note 采用qt代码注释风格，关键词说明如下
+//      @brief 功能简要说明
+//      @param 参数说明
+//      @return 返回值说明
+//      @note 注解
+//
 //*/
 
 #ifndef CCOMPLEXMAT
@@ -11,7 +18,11 @@
 
 #include "opencv2/core.hpp"
 
-/** @bried 单通道矩阵构造复振幅矩阵时，指明矩阵代表的光场信息*/
+/** @brief 错误类型 */
+#define NORMAL 0;   // 无错误正常结束
+
+
+/** @brief 单通道矩阵构造复振幅矩阵时，指明矩阵代表的光场信息*/
 typedef int CPLX_type;
 #define GS_CLPX 0
 #define GS_REAL 1
@@ -30,20 +41,20 @@ class CComplexMat
 // 构造函数 Constructors
 public:
     /** @overload
-    @bried CComplexMat 复振幅矩阵类默认构造函数
+    @brief 复振幅矩阵类默认构造函数
     @note 不会开辟数据存放空间
     */
     CComplexMat();
 
     /** @overload
-    @bried CComplexMat 指定行数和列数构造空复振幅矩阵
+    @brief 指定行数和列数构造空复振幅矩阵
     @param _rows 矩阵行数
     @param _cols 矩阵列数
     */
     CComplexMat(int _rows, int _cols);
 
     /** @overload
-    @bried CComplexMat 通过已知数据构建
+    @brief 通过已知数据构建
     @param M 初始化使用的矩阵
     @param type 矩阵代表的光场信息，GS_CLPX双通道矩阵、GS_REAL实部、GS_IMAG虚部、GS_AMPL振幅、GS_PHAS相位
     */
@@ -83,7 +94,7 @@ public:
     int setPhase(Mat P);       // 设置相位
 
     /** 
-    @bried CComplexMat 通过已知数据构建
+    @brief 通过已知数据构建
     @param M 初始化使用的矩阵
     @param type 矩阵代表的光场信息，GS_CLPX双通道矩阵、GS_REAL实部、GS_IMAG虚部、GS_AMPL振幅、GS_PHAS相位
     */

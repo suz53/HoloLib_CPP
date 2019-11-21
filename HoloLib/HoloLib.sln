@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CComplexMat", "CComplexMat\CComplexMat.vcxproj", "{49BBA709-F078-41A2-B04E-1D82BEFF3C9C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CGH_Algorithm", "CGH_Algorithm\CGH_Algorithm.vcxproj", "{B9C01B3E-B0E8-4D09-8113-484A22935D3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{49BBA709-F078-41A2-B04E-1D82BEFF3C9C}.Release|x64.Build.0 = Release|x64
 		{49BBA709-F078-41A2-B04E-1D82BEFF3C9C}.Release|x86.ActiveCfg = Release|Win32
 		{49BBA709-F078-41A2-B04E-1D82BEFF3C9C}.Release|x86.Build.0 = Release|Win32
+		{B9C01B3E-B0E8-4D09-8113-484A22935D3D}.Debug|x64.ActiveCfg = Debug|x64
+		{B9C01B3E-B0E8-4D09-8113-484A22935D3D}.Debug|x64.Build.0 = Debug|x64
+		{B9C01B3E-B0E8-4D09-8113-484A22935D3D}.Debug|x86.ActiveCfg = Debug|Win32
+		{B9C01B3E-B0E8-4D09-8113-484A22935D3D}.Debug|x86.Build.0 = Debug|Win32
+		{B9C01B3E-B0E8-4D09-8113-484A22935D3D}.Release|x64.ActiveCfg = Release|x64
+		{B9C01B3E-B0E8-4D09-8113-484A22935D3D}.Release|x64.Build.0 = Release|x64
+		{B9C01B3E-B0E8-4D09-8113-484A22935D3D}.Release|x86.ActiveCfg = Release|Win32
+		{B9C01B3E-B0E8-4D09-8113-484A22935D3D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

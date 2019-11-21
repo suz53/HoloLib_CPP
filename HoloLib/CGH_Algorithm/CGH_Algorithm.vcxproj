@@ -59,9 +59,11 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\OpenCV Configuration\OpenCV_Debug_x86.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\OpenCV Configuration\OpenCV_Release_x86_staticlib.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -72,12 +74,18 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)Executable File\$(Configuration)\</OutDir>
+    <IncludePath>$(SolutionDir)$(ProjectName)\include;$(SolutionDir)CComplexMat\include;$(IncludePath)</IncludePath>
+    <SourcePath>$(SolutionDir)$(ProjectName)\src;$(SolutionDir)CComplexMat\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)Executable File\$(Configuration)\</OutDir>
+    <IncludePath>$(SolutionDir)$(ProjectName)\include;$(SolutionDir)CComplexMat\include;$(IncludePath)</IncludePath>
+    <SourcePath>$(SolutionDir)$(ProjectName)\src;$(SolutionDir)CComplexMat\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -151,7 +159,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CGH_Algorithm.cpp" />
+    <ClCompile Include="..\CComplexMat\src\CComplexMat.cpp" />
+    <ClCompile Include="src\expandMAT.cpp" />
+    <ClCompile Include="src\getAxilens.cpp" />
+    <ClCompile Include="src\getBlaze.cpp" />
+    <ClCompile Include="src\getLens.cpp" />
+    <ClCompile Include="src\iterFourier.cpp" />
+    <ClCompile Include="src\iterFresnel.cpp" />
+    <ClCompile Include="src\linspace.cpp" />
+    <ClCompile Include="src\meshgrid.cpp" />
+    <ClCompile Include="src\mod.cpp" />
+    <ClCompile Include="src\propDFFT.cpp" />
+    <ClCompile Include="src\propDOE.cpp" />
+    <ClCompile Include="src\recFourier.cpp" />
+    <ClCompile Include="src\recFresnel.cpp" />
+    <ClCompile Include="src\repImage.cpp" />
+    <ClCompile Include="src\stepPhase.cpp" />
+    <ClCompile Include="test_main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CComplexMat\include\CComplexMat.hpp" />
+    <ClInclude Include="include\CGH.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,12 +1,12 @@
 ﻿/*
-复振幅类实现
+复振幅类CComplexMat类的实现
 */
 
 #include "CComplexMat.hpp"
 
 using namespace cv;
 
-gs::CComplexMat::CComplexMat( ) { }
+gs::CComplexMat::CComplexMat()  { }
 gs::CComplexMat::~CComplexMat() { }
 
 gs::CComplexMat::CComplexMat(int _rows, int _cols)
@@ -101,7 +101,7 @@ int gs::CComplexMat::setRe(Mat R)
     preProcess();
     m_Re = R.clone();
     mergeRI();
-    return 0;
+    return NORMAL;
 }
 
 int gs::CComplexMat::setIm(Mat I)
@@ -109,7 +109,7 @@ int gs::CComplexMat::setIm(Mat I)
     preProcess();
     m_Im = I.clone();
     mergeRI();
-    return 0;
+    return NORMAL;
 }
 
 int gs::CComplexMat::setAmplitude(Mat A)
@@ -117,7 +117,7 @@ int gs::CComplexMat::setAmplitude(Mat A)
     preProcess();
     m_Amplitude = A.clone();
     mergeAP();
-    return 0;
+    return NORMAL;
 }
 
 int gs::CComplexMat::setPhase(Mat P)
@@ -125,7 +125,7 @@ int gs::CComplexMat::setPhase(Mat P)
     preProcess();
     m_Phase = P.clone();
     mergeAP();
-    return 0;
+    return NORMAL;
 }
 
 int gs::CComplexMat::setComplexM(Mat M, CPLX_type type)
@@ -172,7 +172,7 @@ int gs::CComplexMat::setComplexM(Mat M, CPLX_type type)
     m_cols = M.cols;
     rows = m_rows;
     cols = m_cols;
-    return 0;
+    return NORMAL;
 }
 
 int gs::CComplexMat::setComplexM_RC(Mat R, Mat I)
@@ -181,7 +181,7 @@ int gs::CComplexMat::setComplexM_RC(Mat R, Mat I)
     m_Re = R.clone();
     m_Im = I.clone();
     mergeRI();
-    return 0;
+    return NORMAL;
 }
 
 int gs::CComplexMat::setComplexM_AP(Mat A, Mat P)
@@ -190,7 +190,7 @@ int gs::CComplexMat::setComplexM_AP(Mat A, Mat P)
     m_Amplitude = A.clone();
     m_Phase     = P.clone();
     mergeAP();
-    return 0;
+    return NORMAL;
 }
 
 int gs::CComplexMat::create(int _rows, int _cols)
@@ -198,7 +198,7 @@ int gs::CComplexMat::create(int _rows, int _cols)
     m_Re = Mat_<double>(_rows, _cols, 0.0);
     m_Im = Mat_<double>(_rows, _cols, 0.0);
     mergeRI();
-    return 0;
+    return NORMAL;
 }
 
 int gs::CComplexMat::splitRI()
@@ -207,7 +207,7 @@ int gs::CComplexMat::splitRI()
     split(m_ComplexMatCore, channels);
     m_Re = channels[0];
     m_Im = channels[1];
-    return 0;
+    return NORMAL;
 }
 
 int gs::CComplexMat::mergeRI()
@@ -216,7 +216,7 @@ int gs::CComplexMat::mergeRI()
     channels[0] = m_Re;
     channels[1] = m_Im;
     merge(channels, 2, m_ComplexMatCore);
-    return 0;
+    return NORMAL;
 }
 
 int gs::CComplexMat::splitAP()
@@ -224,7 +224,7 @@ int gs::CComplexMat::splitAP()
     splitRI();
     magnitude(m_Re, m_Im, m_Amplitude);
     phase(m_Re, m_Im, m_Phase);
-    return 0;
+    return NORMAL;
 }
 
 int gs::CComplexMat::mergeAP()
@@ -233,7 +233,7 @@ int gs::CComplexMat::mergeAP()
     channels[0] = m_Amplitude.mul(CosMat(m_Phase));
     channels[1] = m_Amplitude.mul(SinMat(m_Phase));
     merge(channels, 2, m_ComplexMatCore);
-    return 0;
+    return NORMAL;
 }
 
 int gs::CComplexMat::preProcess()
@@ -244,7 +244,7 @@ int gs::CComplexMat::preProcess()
     m_cols = m_ComplexMatCore.cols;
     rows = m_rows;
     cols = m_cols;
-    return 0;
+    return NORMAL;
 }
 
 Mat gs::CComplexMat::SinMat(Mat A)
@@ -304,5 +304,5 @@ Mat gs::CComplexMat::mul(CComplexMat CM)
     Mat R = m_Re.mul(CM.getRe()) - m_Im.mul(CM.getIm());
     Mat I = m_Re.mul(CM.getIm()) + m_Im.mul(CM.getRe());
     res.setComplexM_RC(R, I);
-    return Mat();
+    return res.getComplexM();
 }
