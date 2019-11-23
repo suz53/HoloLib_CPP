@@ -81,14 +81,6 @@ Mat mod(Mat M, double n);
 @return 函数运行状态 */
 int iterFourier(InputArray _src, OutputArray _dst, int N_iter = DEF_Niter);
 
-/** @overload
-@brief 迭代傅里叶算法
-@param _src 输入振幅矩阵
-@param N_iter 迭代次数，默认30次
-
-@return 函数运行状态 */
-Mat iterFourier(InputArray _src, int N_iter = 30);
-
 /**
 @brief 迭代傅里叶重构算法
 @param _src 输入纯相位矩阵
@@ -96,6 +88,16 @@ Mat iterFourier(InputArray _src, int N_iter = 30);
 
 @return 函数运行状态 */
 int recFourier(InputArray _src, OutputArray _dst);
+
+/** overload
+@brief 迭代傅里叶重构算法
+@param _src 输入纯相位矩阵
+@param _dst 归一化振幅矩阵
+@param min 原图最小值，double类型，可通过minMaxLoc()获得
+@param max 原图最大值，double类型，可通过minMaxLoc()获得
+
+@return 函数运行状态 */
+int recFourier(InputArray _src, OutputArray _dst, double min, double max);
 
 /**
 @brief 迭代傅里叶重构算法
@@ -136,6 +138,21 @@ int iterFresnel(InputArray _src, OutputArray _dst, double width, double height, 
 @return 函数运行状态 */
 int recFresnel(InputArray _src, OutputArray _dst, double width, double height, \
                 double z, double lambda = DEF_lambda);
+
+/** overload
+@brief 迭代菲涅尔重构算法
+@param _src 输入振幅矩阵
+@param _dst 输出纯相位矩阵
+@param width 物平面宽度，单位：米
+@param height 物平面高度， 单位：米
+@param z 传播距离
+@param min 原图最小值，double类型，可通过minMaxLoc()获得
+@param max 原图最大值，double类型，可通过minMaxLoc()获得
+@param lambda 波长，默认波长532nm
+
+@return 函数运行状态 */
+int recFresnel(InputArray _src, OutputArray _dst, double width, double height, \
+                double z, double min, double max, double lambda = DEF_lambda);
 
 /**
 @brief 获取菲涅尔透镜相位
@@ -231,4 +248,3 @@ int repImage(InputArray _src, OutputArray _dst, int width_Pixel = 1920, int heig
 }
 
 #endif // !CGH
-

@@ -151,12 +151,12 @@ int gs::CComplexMat::setComplexM(Mat M, CPLX_type type)
             break;
         case GS_AMPL:
             m_Amplitude = Mat_<double>(M.clone());
-            m_Phase = Mat_<double>(M.rows, M.cols, 0.0);
+                m_Phase = Mat_<double>(M.rows, M.cols, 0.0);
             mergeAP();
             break;
         case GS_PHAS:
             m_Amplitude = Mat_<double>(M.rows, M.cols, 1.0);
-            m_Phase = Mat_<double>(M.clone());
+                m_Phase = Mat_<double>(M.clone());
             mergeAP();
             break;
         default:
