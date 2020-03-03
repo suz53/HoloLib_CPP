@@ -6,9 +6,15 @@
 using namespace cv;
 using namespace gs;
 
-int main()
+int main(int argc, char** argv)
 {
-    Mat IMG = imread("..\\guang.bmp", IMREAD_GRAYSCALE);
+    if (argc != 2)
+    {
+        std::cout << " Usage: display_image ImageToLoadAndDisplay" << std::endl;
+        return -1;
+    }
+
+    Mat IMG = imread(argv[1], IMREAD_GRAYSCALE);
     int width_Pixel = IMG.cols;
     int height_Pixel = IMG.rows;
     double width = width_Pixel * 12e-6;

@@ -17,6 +17,7 @@
 #define CCOMPLEXMAT
 
 #include "opencv2/core.hpp"
+// #inlcude "GS_ERR_INFO.hpp"
 
 /** @brief 错误类型 */
 #define NORMAL 0;   // 无错误正常结束
@@ -58,10 +59,13 @@ public:
     @param M 初始化使用的矩阵
     @param type 矩阵代表的光场信息，GS_CLPX双通道矩阵、GS_REAL实部、GS_IMAG虚部、GS_AMPL振幅、GS_PHAS相位
     */
-    CComplexMat(Mat M, CPLX_type type = GS_CLPX);
+    CComplexMat(Mat M, CPLX_type type = GS_AMPL);
 
     /** 析构函数*/
     ~CComplexMat();
+
+public:
+    void Create(Mat M, CPLX_type type = GS_AMPL);
 
 // 特性 Attributes
 private:

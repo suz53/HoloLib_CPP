@@ -33,8 +33,8 @@
 
 # Folder
 .vs
-Debug
-Release
+*Debug*
+*Release*
 Executable File
 
 # Microsoft Visual Studio Project files

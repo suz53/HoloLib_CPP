@@ -4,15 +4,22 @@
 #include <iostream>
 #include "opencv2/core.hpp"
 #include "opencv2/highgui.hpp"
-#include "opencv2/imgcodecs.hpp"
 #include "CComplexMat.hpp"
 
 using namespace cv;
 using namespace gs;
 
-int main()
+int main(int argc, char** argv)
 {
-    Mat IMG = imread("..//lena.bmp", IMREAD_GRAYSCALE);
+    if (argc != 2)
+    {
+        std::cout << " Usage: display_image ImageToLoadAndDisplay" << std::endl;
+        return -1;
+    }
+
+    Mat IMG = imread(argv[1], IMREAD_GRAYSCALE);
+    std::cout << "Image Height: " << IMG.rows << std::endl;
+    std::cout << "Image Width : " << IMG.cols << std::endl;
     imshow("原图", IMG);
     CplxM T(IMG, GS_AMPL);
     dft(T, T);

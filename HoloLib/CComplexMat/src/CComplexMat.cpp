@@ -66,6 +66,51 @@ gs::CComplexMat::CComplexMat(Mat M, CPLX_type type)
     cols = m_cols; 
 }
 
+void gs::CComplexMat::Create(Mat M, CPLX_type type)
+{
+    if (M.channels() == 2 && type == GS_CLPX)
+    {
+        m_ComplexMatCore = M.clone();
+    }
+    else
+    {
+        switch (type)
+        {
+        case GS_REAL:
+            m_Re = Mat_<double>(M.clone());
+            m_Im = Mat_<double>(M.rows, M.cols, 0.0);
+            mergeRI();
+            break;
+        case GS_IMAG:
+            m_Re = Mat_<double>(M.rows, M.cols, 0.0);
+            m_Im = Mat_<double>(M.clone());
+            mergeRI();
+            break;
+        case GS_AMPL:
+            m_Amplitude = Mat_<double>(M.clone());
+            m_Phase = Mat_<double>(M.rows, M.cols, 0.0);
+            mergeAP();
+            break;
+        case GS_PHAS:
+            m_Amplitude = Mat_<double>(M.rows, M.cols, 1.0);
+            m_Phase = Mat_<double>(M.clone());
+            mergeAP();
+            break;
+        default:
+            m_Re = Mat_<double>(M.clone());
+            m_Im = Mat_<double>(M.rows, M.cols, 0.0);
+            mergeRI();
+            break;
+        }
+    }
+    splitRI();
+    splitAP();
+    m_rows = M.rows;
+    m_cols = M.cols;
+    rows = m_rows;
+    cols = m_cols;
+}
+
 Mat gs::CComplexMat::getAmplitude()
 {
     preProcess();

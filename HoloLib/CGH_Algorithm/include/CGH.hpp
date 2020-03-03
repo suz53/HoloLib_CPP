@@ -20,13 +20,15 @@ typedef int EX_style;
 #define GS_PIXEL   0
 #define GS_OVERALL 1
 
-// 默认参数
-const double DEF_lambda = 532e-9;
-const int DEF_Niter = 30;
-
 
 // HoloLib 算法放置于gs命名空间内
 namespace gs {
+
+// 默认参数
+const double DEF_lambda = 532e-9;
+const int DEF_Niter = 30;
+const int DEF_Width = 1280;
+const int DEF_Height = 1024;
 
 using namespace cv;
 
@@ -103,8 +105,8 @@ int recFourier(InputArray _src, OutputArray _dst, double min, double max);
 @brief 迭代傅里叶重构算法
 @param _src 输入波阵面复振幅矩阵
 @param _dst 输出波阵面复振幅矩阵
-@param width 波阵面宽度，单位：米
-@param height 波阵面高度， 单位：米
+@param width  波阵面宽度，单位：米
+@param height 波阵面高度，单位：米
 @param z 传播距离
 @param lambda 波长，默认波长532nm
 
@@ -116,8 +118,8 @@ int propDFFT(CComplexMat& _src, CComplexMat& _dst, double width, double height, 
 @brief 迭代菲涅尔算法
 @param _src 输入振幅矩阵
 @param _dst 输出纯相位矩阵
-@param width 物平面宽度，单位：米
-@param height 物平面高度， 单位：米
+@param width  物平面宽度，单位：米
+@param height 物平面高度，单位：米
 @param z 传播距离
 @param lambda 波长，默认波长532nm
 @param N_iter 迭代次数，默认30次
@@ -130,8 +132,8 @@ int iterFresnel(InputArray _src, OutputArray _dst, double width, double height, 
 @brief 迭代菲涅尔重构算法
 @param _src 输入振幅矩阵
 @param _dst 输出纯相位矩阵
-@param width 物平面宽度，单位：米
-@param height 物平面高度， 单位：米
+@param width  物平面宽度，单位：米
+@param height 物平面高度，单位：米
 @param z 传播距离
 @param lambda 波长，默认波长532nm
 
@@ -143,7 +145,7 @@ int recFresnel(InputArray _src, OutputArray _dst, double width, double height, \
 @brief 迭代菲涅尔重构算法
 @param _src 输入振幅矩阵
 @param _dst 输出纯相位矩阵
-@param width 物平面宽度，单位：米
+@param width  物平面宽度，单位：米
 @param height 物平面高度， 单位：米
 @param z 传播距离
 @param min 原图最小值，double类型，可通过minMaxLoc()获得
@@ -157,7 +159,7 @@ int recFresnel(InputArray _src, OutputArray _dst, double width, double height, \
 /**
 @brief 获取菲涅尔透镜相位
 @param focus 焦距，单位：米
-@param width 透镜高度， 单位：米
+@param width  透镜高度， 单位：米
 @param height 透镜高度， 单位：米
 @param width_Pixel  宽度像素数
 @param height_Pixel 高度像素数
@@ -171,7 +173,7 @@ Mat getLens(double focus, double width, double height, \
 @brief 获取轴锥镜相位
 @param focus 焦距，单位：米
 @param Zg 焦深，单位：米
-@param width 透镜高度， 单位：米
+@param width  透镜高度， 单位：米
 @param height 透镜高度， 单位：米
 @param width_Pixel  宽度像素数
 @param height_Pixel 高度像素数
@@ -207,9 +209,9 @@ int stepPhase(InputArray _src, OutputArray _dst, int N_step = 4);
 @brief DOE元件传播，返回振幅图像
 @param _src 输入纯相位矩阵
 @param _dst 输出波阵面振幅矩阵
-@param width 波阵面宽度，单位：米
-@param height 波阵面高度， 单位：米
-@param width_Pixel 宽度像素数
+@param width  波阵面宽度，单位：米
+@param height 波阵面高度，单位：米
+@param width_Pixel  宽度像素数
 @param height_Pixel 高度像素数
 @param z 传播距离
 @param lambda 波长，默认波长532nm
@@ -239,12 +241,36 @@ int expandMAT(InputArray _src, OutputArray _dst, int nx = 4, int ny = 4, \
 @brief 将全息图重复拼接后裁剪到指定分辨率
 @param _src 输入矩阵
 @param _dst 输出矩阵
-@param width_Pixel 宽度像素数，默认1920
-@param height_Pixel 高度像素数，默认1080
+@param width_Pixel  宽度像素数，默认1280
+@param height_Pixel 高度像素数，默认1024
 
 @return 函数运行状态
 @*/
-int repImage(InputArray _src, OutputArray _dst, int width_Pixel = 1920, int height_Pixel = 1080);
+int repImage(InputArray _src, OutputArray _dst, int width_Pixel = DEF_Width, int height_Pixel = DEF_Height);
+
+/** overload
+@brief 图像四周补零
+@param _src 输入矩阵
+@param _dst 输出矩阵
+@param width_Pixel  宽度像素数，默认1280
+@param height_Pixel 高度像素数，默认1024
+
+@return 函数运行状态
+*/
+int copyMakeBorder(InputArray _src, OutputArray _dst, int width_Pixel = DEF_Width, int height_Pixel = DEF_Height);
+
+/**
+@brief 获取彩色全息图
+@param _src 三通道目标振幅矩阵
+@param _dst 三通道相位输出矩阵
+@param lambda_red   红色光波长
+@param lambda_green 绿色光波长
+@param lambda_blue  蓝色光波长
+
+@return 函数运行状态
+@*/
+int ColoHologram(InputArray _src, OutputArray _dst, double lambda_red, double lambda_green, double lambda_blue);
+
 }
 
 #endif // !CGH
