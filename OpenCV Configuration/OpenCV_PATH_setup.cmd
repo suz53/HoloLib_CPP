@@ -1,0 +1,9 @@
+@ECHO OFF
+
+SET "OPENCV_DIR=%~dp0"
+SET "OPENCV_DIR=%OPENCV_DIR:~0,-1%"
+
+setx /M OPENCV_DIR %OPENCV_DIR%
+setx /M PATH "%PATH%;%%OPENCV_DIR%%\bin"
+
+pause & exit
