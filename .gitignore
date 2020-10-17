@@ -41,6 +41,7 @@ Executable File
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
+*.sln
 
 # Resource
 # *.tif
