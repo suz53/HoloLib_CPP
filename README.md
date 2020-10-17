@@ -25,12 +25,12 @@ savePhase               % 保存相位图
 stepPhase               % 相位分阶函数
 ```
 
-
 ## 部署步骤
 - OpenCV 版本 3.4.12
 - 需要开发者自行配置开发环境
 
-
+## Note
+- 所有程序围绕 CComplexMat 类展开
 
 ## 协议
 - GNU GPLv3
