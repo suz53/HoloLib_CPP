@@ -31,6 +31,7 @@ stepPhase               % 相位分阶函数
 
 ## Note
 - 所有程序围绕 CComplexMat 类展开
+- 原型设计依赖于 [XuRuLin / HoloLib_MATLAB](https://github.com/XuRuLin/HoloLib_MATLAB) 项目
 
 ## 协议
 - GNU GPLv3
