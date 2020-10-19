@@ -9,7 +9,7 @@
 using namespace cv;
 using namespace gs;
 
-int main(int argc, char** argv)
+int main(int argc, char** argv) // 启动时需要携带图片路径参数(项目属性-调试-命令参数-图片路径)
 {
     if (argc != 2)
     {

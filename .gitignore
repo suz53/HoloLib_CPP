@@ -38,9 +38,10 @@
 Executable File
 
 # Microsoft Visual Studio Project files
-# *.vcxproj
-# *.vcxproj.filters
-# *.vcxproj.user
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
 
 # Resource
 # *.tif
