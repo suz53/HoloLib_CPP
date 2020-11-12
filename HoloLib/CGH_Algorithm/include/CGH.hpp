@@ -84,7 +84,7 @@ Mat mod(Mat M, double n);
 int iterFourier(InputArray _src, OutputArray _dst, int N_iter = DEF_Niter);
 
 /**
-@brief 迭代傅里叶重构算法
+@brief 傅里叶重构算法
 @param _src 输入纯相位矩阵
 @param _dst 归一化振幅矩阵
 
@@ -92,7 +92,7 @@ int iterFourier(InputArray _src, OutputArray _dst, int N_iter = DEF_Niter);
 int recFourier(InputArray _src, OutputArray _dst);
 
 /** overload
-@brief 迭代傅里叶重构算法
+@brief 傅里叶重构算法
 @param _src 输入纯相位矩阵
 @param _dst 归一化振幅矩阵
 @param min 原图最小值，double类型，可通过minMaxLoc()获得
@@ -102,7 +102,7 @@ int recFourier(InputArray _src, OutputArray _dst);
 int recFourier(InputArray _src, OutputArray _dst, double min, double max);
 
 /**
-@brief 迭代傅里叶重构算法
+@brief D-FFT菲涅耳传播算法
 @param _src 输入波阵面复振幅矩阵
 @param _dst 输出波阵面复振幅矩阵
 @param width  波阵面宽度，单位：米
