@@ -332,6 +332,7 @@ Mat gs::CComplexMat::CosMat(Mat A)
     return out;
 }
 
+
 gs::CComplexMat::operator _InputArray()
 {
     return _InputArray(m_ComplexMatCore);
