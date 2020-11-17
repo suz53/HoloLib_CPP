@@ -290,7 +290,13 @@ int getDoublePhaseHologram(CComplexMat& _src, OutputArray _dst, int pixel_cell =
 @*/
 Mat wrapTo2pi(InputArray _src);
 
-}
+/**
+@brief 实现邻近插值法
+@param _src 输入矩阵
+@param zoom_factor 缩放倍数
+@*/
+Mat  neighborInterpolation(InputArray _src, double zoom_factor);
 
+}
 
 #endif // !CGH
