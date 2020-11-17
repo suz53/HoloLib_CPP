@@ -17,10 +17,11 @@
 #define CCOMPLEXMAT
 
 #include "opencv2/core.hpp"
+#include <opencv2/imgproc/imgproc.hpp>
 // #inlcude "GS_ERR_INFO.hpp"
 
 /** @brief 错误类型 */
-#define NORMAL 0;   // 无错误正常结束
+#define NORMAL 1;   // 无错误正常结束
 
 
 /** @brief 单通道矩阵构造复振幅矩阵时，指明矩阵代表的光场信息*/
@@ -121,6 +122,7 @@ private:
 public:
     static Mat SinMat(Mat A);
     static Mat CosMat(Mat A);
+
 
 // 类类型转换
 public:

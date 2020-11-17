@@ -268,9 +268,29 @@ int copyMakeBorder(InputArray _src, OutputArray _dst, int width_Pixel = DEF_Widt
 @param lambda_blue  蓝色光波长
 
 @return 函数运行状态
-@*/
+*/
 int ColoHologram(InputArray _src, OutputArray _dst, double lambda_red, double lambda_green, double lambda_blue);
 
+/**
+@brief 利用双相位法得到纯相位全息图
+@param _src 输入两通道目标复振幅矩阵
+#param _dst 输出纯相位矩阵
+@param pixel_cell 棋盘格宏像素大小，默认1
+
+@return 函数运行状态
+@*/
+int getDoublePhaseHologram(CComplexMat& _src, OutputArray _dst, int pixel_cell = 1);
+
+
+/**
+@brief 将相位弧度值范围转换到[0, 2*PI],等于0或pi负偶数倍的值映射为0，等于pi偶数倍的值映射为2*pi。
+@param _src 输入相位矩阵
+
+@return 输出相位矩阵
+@*/
+Mat wrapTo2pi(InputArray _src);
+
 }
+
 
 #endif // !CGH
