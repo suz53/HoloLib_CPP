@@ -109,6 +109,11 @@ public:
     int create(int _rows, int _cols);   // 指定行数和列数构造空复振幅矩阵
     // int CopyTo(CComplexMat& CM);     // 深复制
 
+// 将零频分量移动到数组中心
+public:
+    int fftshift();
+
+
 // 实现 Implementation 
 // 内部转换
 private:

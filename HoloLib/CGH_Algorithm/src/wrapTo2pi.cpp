@@ -13,7 +13,7 @@ Mat gs::wrapTo2pi(InputArray _src)
     {
         for (int j = 0; j < src.cols; j++)
         {
-            if (binarizationSrc.at<double>(i, j) && src.at<double>(i, j) == 0)
+            if (binarizationSrc.at<double>(i, j) == 1 && src.at<double>(i, j) == 0)
                 src.at<double>(i, j) = 2 * CV_PI;
         }
     }

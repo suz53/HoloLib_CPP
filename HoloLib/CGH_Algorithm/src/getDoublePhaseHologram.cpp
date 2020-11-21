@@ -5,13 +5,9 @@ using namespace cv;
 int gs::getDoublePhaseHologram(InputArray src_amplitude, InputArray src_phase, OutputArray _dst, int pixel_cell)
 {
 	Mat amplitude = src_amplitude.getMat();
-	//normalize(amplitude, amplitude, 0.0, 1.0, NORM_MINMAX);
-
 	Mat phase = src_phase.getMat();
-	//normalize(phase, phase, 0.0, 1.0, NORM_MINMAX);
-	phase = (phase * 2 + (-1)) * CV_PI;
-	phase = wrapTo2pi(phase);
-	/*normalize(phase, phase, 0.0, 1.0, NORM_MINMAX);*/
+	phase = (phase * 2) * CV_PI;
+	/*phase = wrapTo2pi(phase);*/
 
 	double num[2][2] = { {1, 0}, {0, 1} };
 	Mat Easy_CheckBoard(2, 2, CV_64F, num);

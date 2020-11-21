@@ -6,10 +6,11 @@ int gs::recDoubleHologram(InputArray _src, CComplexMat& _dst, int apertureSize)
 {
 	Mat src = _src.getMat();
 	CComplexMat Holo(src.rows, src.cols);
-	/*normalize(src, src, 0.0, 1.0, NORM_MINMAX);*/
 	Mat amplitude = Mat::ones(src.rows, src.cols, CV_64F);
 	Holo.setComplexM_AP(amplitude, src);
+	Holo.fftshift();
 	dft(Holo, Holo);
+	Holo.fftshift();
 	Mat recAmplitude = Holo.getAmplitude();
 	Mat recPhase = Holo.getPhase();
 	normalize(recAmplitude, recAmplitude, 0, 1, NORM_MINMAX);
@@ -27,6 +28,8 @@ int gs::recDoubleHologram(InputArray _src, CComplexMat& _dst, int apertureSize)
 	Mat frequencyDomainAmplitude = Holo.getAmplitude().mul(aperture);
 	Mat frequencyDomainPhase = Holo.getPhase().mul(aperture);
 	_dst.setComplexM_AP(frequencyDomainAmplitude, frequencyDomainPhase);
+	_dst.fftshift();
 	idft(_dst, _dst);
+	_dst.fftshift();
 	return NORMAL;
 }
