@@ -273,13 +273,14 @@ int ColoHologram(InputArray _src, OutputArray _dst, double lambda_red, double la
 
 /**
 @brief 利用双相位法得到纯相位全息图
-@param _src 输入两通道目标复振幅矩阵
-#param _dst 输出纯相位矩阵
+@param src_amplitude 输入振幅矩阵
+@param src_phase 输入相位矩阵
+@param _dst 输出纯相位矩阵
 @param pixel_cell 棋盘格宏像素大小，默认1
 
 @return 函数运行状态
 @*/
-int getDoublePhaseHologram(CComplexMat& _src, OutputArray _dst, int pixel_cell = 1);
+int getDoublePhaseHologram(InputArray src_amplitude, InputArray src_phase, OutputArray _dst, int pixel_cell = 1);
 
 
 /**
@@ -290,7 +291,24 @@ int getDoublePhaseHologram(CComplexMat& _src, OutputArray _dst, int pixel_cell =
 @*/
 Mat wrapTo2pi(InputArray _src);
 
-}
+/**
+@brief 实现邻近插值法
+@param _src 输入矩阵
+@param zoom_factor 缩放倍数
 
+@return 输出矩阵
+@*/
+Mat  neighborInterpolation(InputArray _src, double zoom_factor);
+
+/**
+@brief 重构双相位全息图
+@param _src 输入相位矩阵
+@param _dst 输出复振幅矩阵
+@param apertureSize 孔径大小
+
+@return 函数运行状态
+@*/
+int recDoubleHologram(InputArray _src, CComplexMat& _dst, int apertureSize);
+}
 
 #endif // !CGH

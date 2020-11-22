@@ -246,6 +246,26 @@ int gs::CComplexMat::create(int _rows, int _cols)
     return NORMAL;
 }
 
+int gs::CComplexMat::fftshift()
+{
+    preProcess();
+    Mat get_Re = Mat_<double>(rows, cols, 0.0);
+    Mat get_Im = Mat_<double>(rows, cols, 0.0);
+    int u, v;
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            u = (i + (int)(rows / 2)) % rows;
+            v = (j + (int)(cols / 2)) % cols;
+            get_Im.at<double>(u, v) = m_Im.at<double>(i, j);
+            get_Re.at<double>(u, v) = m_Re.at<double>(i, j);
+        }
+    }
+    setComplexM_RC(get_Re, get_Im);
+    return 0;
+}
+
 int gs::CComplexMat::splitRI()
 {
     Mat channels[2];
