@@ -1,9 +1,9 @@
-// Demo_doublePhaseHologram.cpp --- 此文件包含 "main" 函数。
+﻿// Demo_doublePhaseHologram.cpp --- 此文件包含 "main" 函数。
 // 双相位全息图示例
 //
-#include "CComplexMat.hpp"
 #include <iostream>
 #include "opencv2/opencv.hpp"
+#include "CComplexMat.hpp"
 #include "CGH.hpp"
 
 using namespace cv;
