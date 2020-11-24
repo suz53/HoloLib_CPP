@@ -1,5 +1,5 @@
-// Demo_doublePhaseHologram.cpp --- ´ËÎÄ¼ş°üº¬ "main" º¯Êı¡£
-// Ë«ÏàÎ»È«Ï¢Í¼Ê¾Àı
+// Demo_doublePhaseHologram.cpp --- æ­¤æ–‡ä»¶åŒ…å« "main" å‡½æ•°ã€‚
+// åŒç›¸ä½å…¨æ¯å›¾ç¤ºä¾‹
 //
 #include "CComplexMat.hpp"
 #include <iostream>
@@ -11,50 +11,50 @@ using namespace gs;
 
 static void help(const char** argv)
 {
-	printf("\n´Ë³ÌĞòÑİÊ¾ÁËË«ÏàÎ»È«Ï¢Í¼µÄÉú³ÉÒÔ¼°´´½¨.\n"
-		   "ÏÔÊ¾ÁËÉú³ÉµÄË«ÏàÎ»È«Ï¢Í¼ÒÔ¼°ÖØ¹¹µÄÕñ·ùºÍÏàÎ».\n"
-		   "³ÌĞòÂ·¾¶:\n %s.\n", argv[0]);
+    printf("\næ­¤ç¨‹åºæ¼”ç¤ºäº†åŒç›¸ä½å…¨æ¯å›¾çš„ç”Ÿæˆä»¥åŠåˆ›å»º.\n"
+           "æ˜¾ç¤ºäº†ç”Ÿæˆçš„åŒç›¸ä½å…¨æ¯å›¾ä»¥åŠé‡æ„çš„æŒ¯å¹…å’Œç›¸ä½.\n"
+           "ç¨‹åºè·¯å¾„:\n %s.\n", argv[0]);
 }
 
 
 int main(int argc, const char** argv)
 {
-	help(argv);
+    help(argv);
 
-	if (argc != 3) // Æô¶¯Ê±ĞèÒªĞ¯´øÍ¼Æ¬Â·¾¶²ÎÊı(ÏîÄ¿ÊôĞÔ-µ÷ÊÔ-ÃüÁî²ÎÊı-Í¼Æ¬Â·¾¶)
-	{
-		std::cout << " Usage: display_image ImageToLoadAndDisplay" << std::endl;
-		return -1;
-	}
+    if (argc != 3) // å¯åŠ¨æ—¶éœ€è¦æºå¸¦å›¾ç‰‡è·¯å¾„å‚æ•°(é¡¹ç›®å±æ€§-è°ƒè¯•-å‘½ä»¤å‚æ•°-å›¾ç‰‡è·¯å¾„)
+    {
+        std::cout << " Usage: display_image ImageToLoadAndDisplay" << std::endl;
+        return -1;
+    }
 
-	// ¶ÁÈëÕñ·ùºÍÏàÎ»Í¼Ïñ¡¢ÉèÖÃÍ¼Ïñ·Ö±æÂÊ¡¢Êı¾İÀàĞÍ¡¢Êı¾İ·¶Î§
-	Mat amplitude = imread(argv[1], IMREAD_GRAYSCALE);
-	Mat phase = imread(argv[2], IMREAD_GRAYSCALE);
-	Size dsize = Size(800, 800);
-	phase = Mat_<double>(phase);
-	amplitude = Mat_<double>(amplitude);
-	resize(amplitude, amplitude, dsize);
-	resize(phase, phase, dsize);
-	normalize(phase, phase, 0.0, 1.0, NORM_MINMAX);
-	normalize(amplitude, amplitude, 0.0, 1.0, NORM_MINMAX);
+    // è¯»å…¥æŒ¯å¹…å’Œç›¸ä½å›¾åƒã€è®¾ç½®å›¾åƒåˆ†è¾¨ç‡ã€æ•°æ®ç±»å‹ã€æ•°æ®èŒƒå›´
+    Mat amplitude = imread(argv[1], IMREAD_GRAYSCALE);
+    Mat phase = imread(argv[2], IMREAD_GRAYSCALE);
+    Size dsize = Size(800, 800);
+    phase = Mat_<double>(phase);
+    amplitude = Mat_<double>(amplitude);
+    resize(amplitude, amplitude, dsize);
+    resize(phase, phase, dsize);
+    normalize(phase, phase, 0.0, 1.0, NORM_MINMAX);
+    normalize(amplitude, amplitude, 0.0, 1.0, NORM_MINMAX);
 
-	// Éú³ÉË«ÏàÎ»È«Ï¢Í¼
-	Mat hologram;
-	getDoublePhaseHologram(amplitude, phase, hologram, 1);
+    // ç”ŸæˆåŒç›¸ä½å…¨æ¯å›¾
+    Mat hologram;
+    getDoublePhaseHologram(amplitude, phase, hologram, 1);
 
-	// ÏÔÊ¾Ë«ÏàÎ»È«Ï¢Í¼
-	normalize(hologram, hologram, 0, 1, NORM_MINMAX);
-	imshow("Ë«ÏàÎ»È«Ï¢Í¼", hologram);
-	hologram = hologram * (2 * CV_PI);
+    // æ˜¾ç¤ºåŒç›¸ä½å…¨æ¯å›¾
+    normalize(hologram, hologram, 0, 1, NORM_MINMAX);
+    imshow("åŒç›¸ä½å…¨æ¯å›¾", hologram);
+    hologram = hologram * (2 * CV_PI);
 
-	// ÖØ¹¹Ë«ÏàÎ»È«Ï¢Í¼£¬²¢ÇÒÏÔÊ¾
-	CComplexMat result(800, 800);
-	recDoubleHologram(hologram, result, 200);
-	Mat recAmplitude = result.getAmplitude();
-	Mat recPhase = result.getPhase();
-	normalize(recAmplitude, recAmplitude, 0, 1, NORM_MINMAX);
-	normalize(recPhase, recPhase, 0, 1, NORM_MINMAX);
-	imshow("Õñ·ù", recAmplitude);
-	imshow("ÏàÎ»", recPhase);
-	waitKey(0);
+    // é‡æ„åŒç›¸ä½å…¨æ¯å›¾ï¼Œå¹¶ä¸”æ˜¾ç¤º
+    CComplexMat result(800, 800);
+    recDoubleHologram(hologram, result, 200);
+    Mat recAmplitude = result.getAmplitude();
+    Mat recPhase = result.getPhase();
+    normalize(recAmplitude, recAmplitude, 0, 1, NORM_MINMAX);
+    normalize(recPhase, recPhase, 0, 1, NORM_MINMAX);
+    imshow("æŒ¯å¹…", recAmplitude);
+    imshow("ç›¸ä½", recPhase);
+    waitKey(0);
 }
