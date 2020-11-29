@@ -309,6 +309,46 @@ Mat  neighborInterpolation(InputArray _src, double zoom_factor);
 @return 函数运行状态
 @*/
 int recDoubleHologram(InputArray _src, CComplexMat& _dst, int apertureSize);
+
+/**
+@brief 利用Floyd-Steinberg误差扩散抖动算法，将图像二值化
+@param _src 输入振幅矩阵
+@param _dst 输出二值化振幅矩阵
+
+@return 函数运行状态
+@*/
+int getBinaryImage(InputArray _src, OutputArray _dst);
+
+
+/**
+@brief 得到二元振幅全息图
+@param src_amplitude 输入振幅矩阵
+@param src_phase 输入相位矩阵
+@param _dst 输出纯相位矩阵
+
+@return 函数运行状态
+@*/
+int getBinaryHologram(InputArray src_amplitude, InputArray src_phase, OutputArray _dst);
+
+/**
+@brief 重构二元振幅全息图
+@param _src 输入相位矩阵
+@param _dst 输出复振幅矩阵
+@param apertureSize 孔径大小
+
+@return 函数运行状态
+@*/
+int recBinaryHologram(InputArray _src, CComplexMat& _dst, int apertureSize);
+
+/**
+@brief 获取孔径矩阵
+@param _rows 矩阵行数
+@param _cols 矩阵列数
+@param apertureSize 孔径大小
+
+@return 孔径矩阵
+@*/
+Mat getAperture(int _rows, int _cols, int apertureSize);
 }
 
 #endif // !CGH

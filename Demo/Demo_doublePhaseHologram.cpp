@@ -11,7 +11,7 @@ using namespace gs;
 
 static void help(const char** argv)
 {
-    printf("\n此程序演示了双相位全息图的生成以及创建.\n"
+    printf("\n此程序演示了双相位全息图的生成以及重构.\n"
            "显示了生成的双相位全息图以及重构的振幅和相位.\n"
            "程序路径:\n %s.\n", argv[0]);
 }
@@ -45,7 +45,6 @@ int main(int argc, const char** argv)
     // 显示双相位全息图
     normalize(hologram, hologram, 0, 1, NORM_MINMAX);
     imshow("双相位全息图", hologram);
-    hologram = hologram * (2 * CV_PI);
 
     // 重构双相位全息图，并且显示
     CComplexMat result(800, 800);
