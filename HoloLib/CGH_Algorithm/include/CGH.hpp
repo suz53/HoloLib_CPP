@@ -252,12 +252,12 @@ int repImage(InputArray _src, OutputArray _dst, int width_Pixel = DEF_Width, int
 @brief 图像四周补零
 @param _src 输入矩阵
 @param _dst 输出矩阵
-@param width_Pixel  宽度像素数，默认1280
-@param height_Pixel 高度像素数，默认1024
+@param width_Pixel  输出宽度像素数
+@param height_Pixel 输出高度像素数
 
 @return 函数运行状态
 */
-int copyMakeBorder(InputArray _src, OutputArray _dst, int width_Pixel = DEF_Width, int height_Pixel = DEF_Height);
+int copyMakeBorder(InputArray _src, OutputArray _dst, int width_Pixel, int height_Pixel);
 
 /**
 @brief 获取彩色全息图
@@ -349,6 +349,16 @@ int recBinaryHologram(InputArray _src, CComplexMat& _dst, int apertureSize);
 @return 孔径矩阵
 @*/
 Mat getAperture(int _rows, int _cols, int apertureSize);
+
+/**
+@brief 优化的迭代傅里叶算法
+@param _src 输入振幅矩阵
+@param _dst 输出振幅矩阵
+@param N_iter 迭代次数
+
+@return 函数运行状态
+@*/
+int optimizedIterFourier(InputArray _src, OutputArray _dst, int imageRows, int imageCols, int N_iter = DEF_Niter);
 }
 
 #endif // !CGH
