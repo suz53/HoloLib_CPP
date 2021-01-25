@@ -33,8 +33,8 @@ int main(int argc, const char** argv)
     Size dsize = Size(800, 800);
     phase = Mat_<double>(phase);
     amplitude = Mat_<double>(amplitude);
-    resize(amplitude, amplitude, dsize);
-    resize(phase, phase, dsize);
+    //resize(amplitude, amplitude, dsize);
+    //resize(phase, phase, dsize);
     normalize(phase, phase, 0.0, 1.0, NORM_MINMAX);
     normalize(amplitude, amplitude, 0.0, 1.0, NORM_MINMAX);
 

@@ -32,7 +32,7 @@ int gs::getDoublePhaseHologram(InputArray src_amplitude, InputArray src_phase, O
 
     Mat dst = _dst.getMat();
     dst = (bw_CheckBoard.mul(bw_phase)) + (wh_CheckBoard.mul(wh_phase));
-    dst.copyTo(_dst);
     normalize(dst, dst, 0.0, 1.0, NORM_MINMAX);
+    dst.copyTo(_dst);	
     return NORMAL;
 }
