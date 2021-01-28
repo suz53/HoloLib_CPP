@@ -84,6 +84,15 @@ Mat mod(Mat M, double n);
 int iterFourier(InputArray _src, OutputArray _dst, int N_iter = DEF_Niter);
 
 /**
+@brief 非迭代傅里叶算法
+@param _srcAmplitude 输入振幅矩阵
+@param _srcPhase 输入相位矩阵
+@param _dst 输出纯相位矩阵
+
+@return 函数运行状态 */
+int nonIterFourier(InputArray _srcAmplitude, InputArray _srcPhase, OutputArray _dst);
+
+/**
 @brief 傅里叶重构算法
 @param _src 输入纯相位矩阵
 @param _dst 归一化振幅矩阵
@@ -100,6 +109,15 @@ int recFourier(InputArray _src, OutputArray _dst);
 
 @return 函数运行状态 */
 int recFourier(InputArray _src, OutputArray _dst, double min, double max);
+
+/** overload
+@brief 傅里叶重构算法，返回重构的振幅和相位
+@param _src 输入纯相位矩阵
+@param _dstAmplitude 归一化振幅矩阵
+@param _dstPhase     归一化相位矩阵
+
+@return 函数运行状态 */
+int recFourier(InputArray _src, OutputArray _dstAmplitude, OutputArray _dstPhase);
 
 /**
 @brief D-FFT菲涅耳传播算法
