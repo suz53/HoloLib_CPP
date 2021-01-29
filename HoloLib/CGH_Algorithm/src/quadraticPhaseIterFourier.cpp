@@ -8,7 +8,6 @@ int gs::quadraticPhaseIterFourier(InputArray _src, OutputArray _dst, int imageRo
 {
     Mat src = _src.getMat();
     src = Mat_<double>(src);
-    normalize(src, src, 0, 1.0, NORM_MINMAX);
     Mat w, h;
     Mat X, Y;
     w = linspace(-src.cols / 2, src.cols / 2, src.cols);
