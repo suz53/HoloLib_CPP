@@ -93,6 +93,16 @@ int iterFourier(InputArray _src, OutputArray _dst, int N_iter = DEF_Niter);
 int nonIterFourier(InputArray _srcAmplitude, InputArray _srcPhase, OutputArray _dst);
 
 /**
+@brief 非迭代傅里叶算法
+@param _srcAmplitude 输入振幅矩阵
+@param _dst 输出纯相位矩阵
+@param mix_Factor 相位混合因子
+
+
+@return 函数运行状态 */
+int nonIterFourier(InputArray _src, OutputArray _dst, int imageRows, int imageCols, double mix_Factor);
+
+/**
 @brief 傅里叶重构算法
 @param _src 输入纯相位矩阵
 @param _dst 归一化振幅矩阵
