@@ -378,6 +378,17 @@ Mat getAperture(int _rows, int _cols, int apertureSize);
 @*/
 int optimizedIterFourier(InputArray _src, OutputArray _dst, int imageRows, int imageCols, int N_iter = DEF_Niter);
 
+/** overload
+@brief 优化的迭代傅里叶算法
+@param _src 输入振幅矩阵
+@param _dst 输出相位矩阵
+@param N_iter 迭代次数
+@param options 设置初始相位是二次相位
+
+@return 函数运行状态
+@*/
+int optimizedIterFourier(InputArray _src, OutputArray _dst, int imageRows, int imageCols, int N_iter, int options);
+
 /**
 @brief 基于二次相位的迭代傅里叶算法
 @param _src 输入振幅矩阵
